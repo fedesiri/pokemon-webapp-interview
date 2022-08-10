@@ -37,3 +37,9 @@ export function capitalizeLetter(string) {
     }
     return stringMayus;
 }
+
+export function filterPokemons(pokemons, searchText) {
+    return pokemons.filter(
+        pokemon => pokemon.name.includes(searchText) || pokemon.id.toString() === searchText
+    );
+}
