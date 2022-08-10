@@ -17,7 +17,7 @@ export function formatPokemon(pokemon) {
             speed: pokemon.stats[5].base_stat,
         },
         heigth: pokemon.height,
-        imagen: pokemon.sprites.front_default,
+        image: pokemon.sprites.other.dream_world.front_default,
         types: formatTypes(pokemon.types),
     };
 }
@@ -28,4 +28,12 @@ export function createPokemonIds() {
         ids.push(i);
     }
     return ids;
+}
+
+export function capitalizeLetter(string) {
+    let stringMayus = string[0].toUpperCase();
+    for (var i = 1; i < string.length; i++) {
+        stringMayus = stringMayus + string[i];
+    }
+    return stringMayus;
 }

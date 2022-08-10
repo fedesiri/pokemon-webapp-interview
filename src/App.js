@@ -8,7 +8,7 @@ function App() {
             <Navbar />
 
             <Grid container>
-                <Grid item container xs={8} style={{ backgroundColor: "red", height: "1100px" }}>
+                <Grid item container xs={8}>
                     <Grid
                         item
                         container
@@ -21,7 +21,8 @@ function App() {
                             <h1>Searchbar</h1>
                         </Grid>
                     </Grid>
-                    <Grid item>
+
+                    <Grid item xs={12}>
                         <PokemonList />
                     </Grid>
                 </Grid>
