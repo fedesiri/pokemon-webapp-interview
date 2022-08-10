@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import { Grid } from "@mui/material/";
+import PokemonList from "./components/PokemonList";
 
 function App() {
     return (
@@ -21,7 +22,7 @@ function App() {
                         </Grid>
                     </Grid>
                     <Grid item>
-                        <h1>Pokemon List</h1>
+                        <PokemonList />
                     </Grid>
                 </Grid>
                 <Grid
