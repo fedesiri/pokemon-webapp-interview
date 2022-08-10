@@ -1,8 +1,12 @@
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import { Grid } from "@mui/material/";
 import PokemonList from "./components/PokemonList";
+import SearchBar from "./components/SearchBar";
 
 function App() {
+    const [searchText, setSearchText] = useState("");
+
     return (
         <>
             <Navbar />
@@ -15,15 +19,15 @@ function App() {
                         justifyContent="center"
                         alignItems="center"
                         xs={12}
-                        style={{ backgroundColor: "yellow", height: "100px" }}
+                        style={{ height: "100px" }}
                     >
-                        <Grid item>
-                            <h1>Searchbar</h1>
+                        <Grid item xs={6}>
+                            <SearchBar searchText={searchText} setSearchText={setSearchText} />
                         </Grid>
                     </Grid>
 
                     <Grid item xs={12}>
-                        <PokemonList />
+                        <PokemonList searchText={searchText} />
                     </Grid>
                 </Grid>
                 <Grid
