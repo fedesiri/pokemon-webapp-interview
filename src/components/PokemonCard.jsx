@@ -12,15 +12,35 @@ import {
     Paper,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { useDispatch } from "react-redux";
+import { addCombatPokemon } from "../redux/actions";
+import { useSelector } from "react-redux";
+import swAlert from "sweetalert2";
 
 function PokemonCard({ pokemon }) {
+    const combatPokemons = useSelector(state => state.combatPokemons);
+    const dispatch = useDispatch();
+
+    function addPokemonToSelection() {
+        if (combatPokemons.length < 6) {
+            dispatch(addCombatPokemon(pokemon.id));
+        } else {
+            swAlert.fire({
+                title: "Error",
+                text: "Solo puede haber 6 pokemones para combate!",
+                icon: "error",
+                confirmationButtonText: "ok",
+            });
+        }
+    }
+
     return (
         <Paper elevation={3}>
             <Card sx={{ maxWidth: 345 }}>
                 <CardActions disableSpacing>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <IconButton>
+                            <IconButton onClick={addPokemonToSelection}>
                                 <AddIcon />
                             </IconButton>
                         </Grid>

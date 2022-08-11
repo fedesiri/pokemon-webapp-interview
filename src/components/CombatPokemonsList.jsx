@@ -30,40 +30,65 @@ function CombatPokemonsList() {
                     </Typography>
                 </Grid>
                 <Grid item container justifyContent="space-between" alignItems="flex-start">
-                    {combatPokemons.map(pokemon => {
-                        return (
-                            <Grid item container justifyContent="center" xs={6} key={pokemon.id}>
+                    {!combatPokemons.length ? (
+                        <Grid item>
+                            <Typography
+                                variant="h6"
+                                style={{ textAlign: "center", marginTop: "15%" }}
+                            >
+                                Lista vacia, no hay ningun pokemon listo
+                            </Typography>
+                        </Grid>
+                    ) : (
+                        combatPokemons.map(pokemon => {
+                            return (
                                 <Grid
                                     item
                                     container
-                                    direction="column"
                                     justifyContent="center"
-                                    alignItems="center"
-                                    xs={10}
+                                    xs={6}
+                                    key={pokemon.id}
                                 >
-                                    <Grid item>
-                                        <div
-                                            style={{
-                                                height: "100px",
-                                                width: "100px",
+                                    <Grid
+                                        item
+                                        container
+                                        direction="column"
+                                        justifyContent="center"
+                                        alignItems="center"
+                                        xs={10}
+                                    >
+                                        <Grid item>
+                                            <div
+                                                style={{
+                                                    height: "100px",
+                                                    width: "100px",
 
-                                                backgroundImage: `url(${pokemon.secondaryImage})`,
-                                                backgroundSize: "100% 100%",
-                                            }}
-                                        ></div>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography>
-                                            <b>{capitalizeLetter(pokemon.name)}</b>
-                                            <IconButton>
-                                                <DeleteIcon />
-                                            </IconButton>
-                                        </Typography>
+                                                    backgroundImage: `url(${pokemon.secondaryImage})`,
+                                                    backgroundSize: "100% 100%",
+                                                }}
+                                            >
+                                                <IconButton
+                                                    style={{
+                                                        position: "relative",
+                                                        left: "75px",
+                                                        // top: "10px",
+                                                    }}
+                                                >
+                                                    <DeleteIcon />
+                                                </IconButton>
+                                            </div>
+                                        </Grid>
+
+                                        <Grid item>
+                                            <Typography>
+                                                <b>{capitalizeLetter(pokemon.name)}</b>
+                                            </Typography>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
-                        );
-                    })}
+                            );
+                        })
+                    )}
                 </Grid>
             </Grid>
         </Paper>
