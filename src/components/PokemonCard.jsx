@@ -22,8 +22,18 @@ function PokemonCard({ pokemon }) {
     const dispatch = useDispatch();
 
     function addPokemonToSelection() {
-        if (combatPokemons.length < 6) {
+        const pokemonFind = combatPokemons.find(poke => poke.id === pokemon.id);
+        if (!combatPokemons.includes(pokemonFind) && combatPokemons.length < 6) {
             dispatch(addCombatPokemon(pokemon.id));
+        } else if (combatPokemons.includes(pokemonFind)) {
+            swAlert.fire({
+                title: "Error",
+                text: `El pokemon '${capitalizeLetter(
+                    pokemon.name
+                )}' ya está en la lista de combate!`,
+                icon: "error",
+                confirmationButtonText: "ok",
+            });
         } else {
             swAlert.fire({
                 title: "Error",
