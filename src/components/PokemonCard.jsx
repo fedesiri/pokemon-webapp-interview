@@ -1,6 +1,5 @@
 import { capitalizeLetter } from "../utils";
 import {
-    Button,
     CardActionArea,
     CardActions,
     Typography,
@@ -17,6 +16,7 @@ import { addCombatPokemon } from "../redux/actions";
 import { useSelector } from "react-redux";
 import swAlert from "sweetalert2";
 import { green } from "@mui/material/colors";
+import ModalPokemonDetail from "./ModalPokemonDetail";
 
 function PokemonCard({ pokemon }) {
     const combatPokemons = useSelector(state => state.combatPokemons);
@@ -77,9 +77,7 @@ function PokemonCard({ pokemon }) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button variant="outlined" size="small" color="primary">
-                        Ver Detalle
-                    </Button>
+                    <ModalPokemonDetail pokemon={pokemon} />
                 </CardActions>
             </Card>
         </Paper>

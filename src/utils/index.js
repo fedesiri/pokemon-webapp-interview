@@ -16,7 +16,7 @@ export function formatPokemon(pokemon) {
             specialDefense: pokemon.stats[4].base_stat,
             speed: pokemon.stats[5].base_stat,
         },
-        heigth: pokemon.height,
+        height: pokemon.height * 10,
         primaryImage: pokemon.sprites.other.dream_world.front_default,
         secondaryImage: pokemon.sprites.other.home.front_default,
         types: formatTypes(pokemon.types),
