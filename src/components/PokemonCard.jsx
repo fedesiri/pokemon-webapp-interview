@@ -22,10 +22,9 @@ function PokemonCard({ pokemon }) {
     const dispatch = useDispatch();
 
     function addPokemonToSelection() {
-        const pokemonFind = combatPokemons.find(poke => poke.id === pokemon.id);
-        if (!combatPokemons.includes(pokemonFind) && combatPokemons.length < 6) {
-            dispatch(addCombatPokemon(pokemon.id));
-        } else if (combatPokemons.includes(pokemonFind)) {
+        const pokemonAlreadyExists = combatPokemons.find(poke => poke.id === pokemon.id);
+
+        if (pokemonAlreadyExists) {
             swAlert.fire({
                 title: "Error",
                 text: `El pokemon '${capitalizeLetter(
@@ -34,13 +33,15 @@ function PokemonCard({ pokemon }) {
                 icon: "error",
                 confirmationButtonText: "ok",
             });
-        } else {
+        } else if (combatPokemons.length >= 6) {
             swAlert.fire({
                 title: "Error",
                 text: "Solo puede haber 6 pokemones para combate!",
                 icon: "error",
                 confirmationButtonText: "ok",
             });
+        } else {
+            dispatch(addCombatPokemon(pokemon.id));
         }
     }
 

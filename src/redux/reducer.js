@@ -1,4 +1,4 @@
-import { ADD_COMBAT_POKEMON, GET_ALL_POKEMONS } from "./actions";
+import { ADD_COMBAT_POKEMON, GET_ALL_POKEMONS, REMOVE_COMBAT_POKEMON } from "./actions";
 
 const initialState = {
     allPokemons: [],
@@ -17,6 +17,15 @@ export default function reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 combatPokemons: state.combatPokemons.concat(pokemonToCombat),
+            };
+        case REMOVE_COMBAT_POKEMON:
+            // const pokemonFind = state.combatPokemons.find(pokemon => pokemon.id === payload);
+            // const pokemonDeletCombat = state.combatPokemons.filter(
+            //     pokemon => pokemon.id === pokemonFind.id
+            // );
+            return {
+                ...state,
+                combatPokemons: state.combatPokemons.filter(pokemon => pokemon.id !== payload),
             };
         default:
             return {
