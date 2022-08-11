@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import { Grid } from "@mui/material/";
 import PokemonList from "./components/PokemonList";
 import SearchBar from "./components/SearchBar";
+import CombatPokemonsList from "./components/CombatPokemonsList";
 
 function App() {
     const [searchText, setSearchText] = useState("");
@@ -37,15 +38,18 @@ function App() {
                 </Grid>
                 <Grid
                     item
+                    container
+                    justifyContent="center"
                     xs={4}
                     style={{
-                        backgroundColor: "green",
                         height: "500px",
                         position: "sticky",
                         top: "100px",
                     }}
                 >
-                    <h1>Combat pokemons</h1>
+                    <Grid item xs={11}>
+                        <CombatPokemonsList />
+                    </Grid>
                 </Grid>
             </Grid>
         </>

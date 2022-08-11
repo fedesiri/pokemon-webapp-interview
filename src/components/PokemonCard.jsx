@@ -20,7 +20,7 @@ function PokemonCard({ pokemon }) {
                 <CardActions disableSpacing>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <IconButton aria-label="add to combat pokemons">
+                            <IconButton>
                                 <AddIcon />
                             </IconButton>
                         </Grid>
@@ -31,7 +31,7 @@ function PokemonCard({ pokemon }) {
                         component="div"
                         alt="img not found"
                         style={{
-                            backgroundImage: `url(${pokemon.image})`,
+                            backgroundImage: `url(${pokemon.primaryImage})`,
                             backgroundSize: "100% 100%",
                             height: "160px",
                         }}
