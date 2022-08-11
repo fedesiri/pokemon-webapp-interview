@@ -5,12 +5,12 @@ import { capitalizeLetter } from "../utils";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { removeCombatPokemon } from "../redux/actions";
 import swAlert from "sweetalert2";
+import { red, green } from "@mui/material/colors";
 
 function CombatPokemonsList() {
     const combatPokemons = useSelector(state => state.combatPokemons);
 
     const dispatch = useDispatch();
-    // console.log("soy combatPokemons!!!! ", combatPokemons);
     function removePokemonToSelection(id) {
         const pokemonToDelete = combatPokemons.find(pokemon => pokemon.id === id);
         swAlert
@@ -21,19 +21,20 @@ function CombatPokemonsList() {
                 )} de la lista de combate?`,
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
+                confirmButtonColor: `${green[700]}`,
+                cancelButtonColor: `${red[700]}`,
                 confirmButtonText: "Aceptar",
                 cancelButtonText: "Cancelar",
             })
             .then(result => {
                 if (result.isConfirmed) {
                     dispatch(removeCombatPokemon(id));
-                    swAlert.fire(
-                        ` ${capitalizeLetter(
+                    swAlert.fire({
+                        text: ` ${capitalizeLetter(
                             pokemonToDelete.name
-                        )} ha sido eliminado de la lista de combate`
-                    );
+                        )} ha sido eliminado de la lista de combate`,
+                        confirmButtonColor: `${green[700]}`,
+                    });
                 }
             });
     }

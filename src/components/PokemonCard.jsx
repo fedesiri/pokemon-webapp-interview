@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { addCombatPokemon } from "../redux/actions";
 import { useSelector } from "react-redux";
 import swAlert from "sweetalert2";
+import { green } from "@mui/material/colors";
 
 function PokemonCard({ pokemon }) {
     const combatPokemons = useSelector(state => state.combatPokemons);
@@ -31,6 +32,7 @@ function PokemonCard({ pokemon }) {
                     pokemon.name
                 )}' ya está en la lista de combate!`,
                 icon: "error",
+                confirmButtonColor: `${green[700]}`,
                 confirmationButtonText: "ok",
             });
         } else if (combatPokemons.length >= 6) {
@@ -38,6 +40,7 @@ function PokemonCard({ pokemon }) {
                 title: "Error",
                 text: "Solo puede haber 6 pokemones para combate!",
                 icon: "error",
+                confirmButtonColor: `${green[700]}`,
                 confirmationButtonText: "ok",
             });
         } else {
