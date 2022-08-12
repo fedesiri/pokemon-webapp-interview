@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { Grid, Typography, Modal, Button, Box, IconButton } from "@mui/material";
+import { Box, Button, Grid, IconButton, Modal, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { capitalizeLetter } from "../utils";
 import { grey } from "@mui/material/colors";
 import translations from "../utils/translations";
+import { useSelector, useDispatch } from "react-redux";
+import { addCombatPokemon, removeCombatPokemon } from "../redux/actions";
 
 const style = {
     position: "absolute",
@@ -23,6 +26,37 @@ function ModalPokemonDetail({ pokemon }) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const dispatch = useDispatch();
+    const combatPokemons = useSelector(state => state.combatPokemons);
+
+    const isAlreadySelected = combatPokemons.find(poke => poke.id === pokemon.id);
+
+    function getProperButton() {
+        if (isAlreadySelected) {
+            return (
+                <IconButton
+                    onClick={() => {
+                        dispatch(removeCombatPokemon(pokemon.id));
+                    }}
+                >
+                    <DeleteIcon />
+                </IconButton>
+            );
+        } else if (combatPokemons.length < 6) {
+            return (
+                <IconButton
+                    onClick={() => {
+                        dispatch(addCombatPokemon(pokemon.id));
+                    }}
+                >
+                    <AddIcon style={{ stroke: grey[700], strokeWidth: "2" }} />
+                </IconButton>
+            );
+        } else {
+            return null;
+        }
+    }
+
     function getStat(statName, value) {
         return (
             <Grid item container justifyContent="space-between">
@@ -41,7 +75,7 @@ function ModalPokemonDetail({ pokemon }) {
     }
 
     return (
-        <div>
+        <>
             <Button variant="outlined" size="small" color="primary" onClick={handleOpen}>
                 Ver Detalle
             </Button>
@@ -98,13 +132,7 @@ function ModalPokemonDetail({ pokemon }) {
                                 xs={6}
                             >
                                 <Grid item container justifyContent="flex-end">
-                                    <Grid item>
-                                        <IconButton>
-                                            <AddIcon
-                                                style={{ stroke: grey[700], strokeWidth: "2" }}
-                                            />
-                                        </IconButton>
-                                    </Grid>
+                                    <Grid item>{getProperButton()}</Grid>
                                 </Grid>
                                 <Grid
                                     item
@@ -161,7 +189,7 @@ function ModalPokemonDetail({ pokemon }) {
                         </Grid>
                         <Grid item container justifyContent="center" alignItems="center">
                             <Grid item>
-                                <Button variant="contained" color="error">
+                                <Button variant="contained" color="error" onClick={handleClose}>
                                     Cerrar
                                 </Button>
                             </Grid>
@@ -169,7 +197,7 @@ function ModalPokemonDetail({ pokemon }) {
                     </Grid>
                 </Box>
             </Modal>
-        </div>
+        </>
     );
 }
 
