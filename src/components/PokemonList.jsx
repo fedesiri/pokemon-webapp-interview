@@ -10,7 +10,6 @@ import Stack from "@mui/material/Stack";
 function PokemonList({ searchText }) {
     const allPokemons = useSelector(state => state.allPokemons);
     const dispatch = useDispatch();
-
     const [page, setPage] = useState(1);
     const pokemonsPerPage = 18;
     const lastIndex = page * pokemonsPerPage;
@@ -21,10 +20,17 @@ function PokemonList({ searchText }) {
     };
 
     useEffect(() => {
+        const numberOfPages = Math.ceil(
+            filterPokemons(allPokemons, searchText).length / pokemonsPerPage
+        );
+
         if (!allPokemons.length) {
             dispatch(getAllPokemons());
         }
-    }, [allPokemons.length, dispatch]);
+        if (page > numberOfPages) {
+            setPage(1);
+        }
+    }, [allPokemons.length, allPokemons, searchText, dispatch, page]);
 
     function getSearchWording() {
         const isNumber = !isNaN(parseInt(searchText));
@@ -82,7 +88,9 @@ function PokemonList({ searchText }) {
                     <Grid item>
                         <Stack spacing={2}>
                             <Pagination
-                                count={Math.ceil(allPokemons.length / pokemonsPerPage)}
+                                count={Math.ceil(
+                                    filterPokemons(allPokemons, searchText).length / pokemonsPerPage
+                                )}
                                 page={page}
                                 onChange={handlePageChange}
                             />
