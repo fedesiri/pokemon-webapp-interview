@@ -63,19 +63,18 @@ function CombatPokemonsList() {
                 </Grid>
                 <Grid item container justifyContent="space-between" alignItems="flex-start">
                     {!combatPokemons.length ? (
-                        <Grid item>
-                            <Typography
-                                variant="h6"
-                                style={{
-                                    textAlign: "center",
-                                    alignItems: "center",
-                                    marginTop: "25%",
-                                    marginLeft: "25%",
-                                    width: "60%",
-                                }}
-                            >
-                                Lista vacia, no hay ningun pokemon listo.
-                            </Typography>
+                        <Grid item container justifyContent="center">
+                            <Grid item xs={7}>
+                                <Typography
+                                    variant="h6"
+                                    style={{
+                                        textAlign: "center",
+                                        marginTop: "25%",
+                                    }}
+                                >
+                                    Lista vacia, no hay ningun pokemon listo.
+                                </Typography>
+                            </Grid>
                         </Grid>
                     ) : (
                         combatPokemons.map(pokemon => {
