@@ -4,6 +4,7 @@ import { Grid } from "@mui/material/";
 import PokemonList from "./components/PokemonList";
 import SearchBar from "./components/SearchBar";
 import CombatPokemonsList from "./components/CombatPokemonsList";
+import { grey } from "@mui/material/colors";
 
 function App() {
     const [searchText, setSearchText] = useState("");
@@ -12,7 +13,7 @@ function App() {
         <>
             <Navbar />
 
-            <Grid container>
+            <Grid container style={{ backgroundColor: grey[200] }}>
                 <Grid
                     item
                     container

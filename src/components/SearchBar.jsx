@@ -13,6 +13,7 @@ function SearchBar({ searchText, setSearchText }) {
             fullWidth
             onChange={handleChange}
             value={searchText}
+            style={{ backgroundColor: "white" }}
         />
     );
 }

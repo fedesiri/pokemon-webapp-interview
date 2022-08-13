@@ -76,7 +76,12 @@ function ModalPokemonDetail({ pokemon }) {
 
     return (
         <>
-            <Button variant="outlined" size="small" color="primary" onClick={handleOpen}>
+            <Button
+                variant="outlined"
+                size="small"
+                style={{ color: grey[700], borderColor: grey[700] }}
+                onClick={handleOpen}
+            >
                 Ver Detalle
             </Button>
             <Modal

@@ -71,12 +71,12 @@ function PokemonCard({ pokemon }) {
                         }}
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {capitalizeLetter(pokemon.name)}
+                        <Typography gutterBottom variant="h5" style={{ textAlign: "center" }}>
+                            <b>{capitalizeLetter(pokemon.name)}</b>
                         </Typography>
                     </CardContent>
                 </CardActionArea>
-                <CardActions>
+                <CardActions style={{ justifyContent: "center" }}>
                     <ModalPokemonDetail pokemon={pokemon} />
                 </CardActions>
             </Card>
