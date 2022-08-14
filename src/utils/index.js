@@ -41,6 +41,7 @@ export function capitalizeLetter(string) {
 
 export function filterPokemons(pokemons, searchText) {
     return pokemons.filter(
-        pokemon => pokemon.name.includes(searchText) || pokemon.id.toString() === searchText
+        pokemon =>
+            pokemon.name.includes(searchText.toLowerCase()) || pokemon.id.toString() === searchText
     );
 }
